@@ -1,0 +1,9 @@
+{
+    "input_path" : "C:\\Users\\harsh\\anaconda3\\envs\\face-recognition\\code\\cropped",
+    "dir_name" : "folder",
+    "sub_dir_name" : ["events","enrollments"],
+    "class_names" :["so","ab","pt","fraud","vip"],
+    "output_path" : "output",
+    "discard_folder_name":"none",
+    "delay":"2"
+}
