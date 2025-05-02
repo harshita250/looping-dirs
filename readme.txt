@@ -1,22 +1,104 @@
-Input is taken from a json file with fields:
-1. input_path: Path to input directory (Can contain folders or files)
-2. dir_name: Name of the folders to be created
-3. sub_dir_name: Events and Enrollments
-4. class_names: Name of classes
-5. output_path: Name of intermediate output folder to be created
-6. discard_folder_name: Name of the folder to be discarded. It should be set to none, if no file is to be discarded.
-7. delay: Delay in seconds
+Based on your description, here is a detailed and well-structured `README.md` in GitHub format for your **File Organizer for Events & Enrollments** script:
 
+````markdown
+# 📁 File Organizer for Events and Enrollments
 
-Output: Folder named data, consists of events and enrollments sub-folders. Each of these sub-folders consist of 4 edges, followed by 5 classes. Events consists of folders 
-which then consists of images, where as enrollments consists of images which is distributed equally amongst all edges and classes
+This project organizes a directory of images into a structured output format with `Events` and `Enrollments` subdirectories. It supports class-wise and edge-wise grouping and is configurable through a JSON input file.
 
-Variables:
+---
 
-1. tree : A dictionary that stores the relative path and files associated with it.
-2. number_of_files : Number of files to be moved to enrollments and events
+## 📌 Purpose
 
-Note:
+To automate the organization of image data from a source directory into a `data` folder with separate `events` and `enrollments` folders, structured by edges and classes, with optional support for discarding specific folders.
 
-1. Files can't be discarded if the name of the file isn't known.
-2. Intermediate output, is deleted once the code is executed completely.
+---
+
+## 🧾 Input JSON Format
+
+The script takes a JSON input file with the following structure:
+
+```json
+{
+  "input_path": "path/to/source",
+  "dir_name": "data",
+  "sub_dir_name": ["events", "enrollments"],
+  "class_names": ["class1", "class2", "class3", "class4", "class5"],
+  "output_path": "intermediate_output",
+  "discard_folder_name": "discard_this" or null,
+  "delay": 2
+}
+````
+
+### 💡 Explanation of Fields
+
+* **`input_path`**: Directory containing files and/or folders to be organized.
+* **`dir_name`**: Name of the final output directory (`data`).
+* **`sub_dir_name`**: Must include `"events"` and `"enrollments"`.
+* **`class_names`**: List of class folder names (typically 5).
+* **`output_path`**: Temporary directory for intermediate operations.
+* **`discard_folder_name`**: Name of folder to exclude. Use `null` if nothing to discard.
+* **`delay`**: Delay in seconds before execution starts.
+
+---
+
+## 📂 Output Folder Structure
+
+```
+data/
+├── events/
+│   ├── edge_1/
+│   │   └── class_1/
+│   │       └── images...
+│   └── ...
+├── enrollments/
+│   ├── edge_1/
+│   │   ├── class_1/
+│   │   └── class_2/
+│   └── ...
+```
+
+* **Events**: Files are grouped in folders and subfolders as per source folder structure.
+* **Enrollments**: Images are evenly distributed across all edges and classes.
+
+---
+
+## 📦 Variables in Code
+
+* `tree`: Dictionary mapping folder paths to their image files.
+* `number_of_files`: Count of files being processed.
+
+---
+
+## ⚠️ Notes & Assumptions
+
+* Files cannot be discarded unless the exact folder name is provided in `discard_folder_name`.
+* Intermediate `output_path` is removed upon successful execution.
+* Images in `enrollments` are equally distributed.
+* Requires all expected keys to be present in the JSON config file.
+
+---
+
+## 🚀 How to Run
+
+1. Create the input JSON configuration file.
+2. Run the script:
+
+   ```bash
+   python organizer.py config.json
+   ```
+3. After completion, check the `data` folder for the output structure.
+
+---
+
+## 🧹 Cleanup
+
+The intermediate output directory defined in `output_path` will be automatically deleted after the operation.
+
+---
+
+## 🛠️ Dependencies
+
+* Python 3.x
+* `os`, `shutil`, `time`, `json`
+
+---
