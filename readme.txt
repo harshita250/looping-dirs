@@ -1,6 +1,3 @@
-Based on your description, here is a detailed and well-structured `README.md` in GitHub format for your **File Organizer for Events & Enrollments** script:
-
-````markdown
 # 📁 File Organizer for Events and Enrollments
 
 This project organizes a directory of images into a structured output format with `Events` and `Enrollments` subdirectories. It supports class-wise and edge-wise grouping and is configurable through a JSON input file.
@@ -17,7 +14,7 @@ To automate the organization of image data from a source directory into a `data`
 
 The script takes a JSON input file with the following structure:
 
-```json
+json
 {
   "input_path": "path/to/source",
   "dir_name": "data",
@@ -27,7 +24,7 @@ The script takes a JSON input file with the following structure:
   "discard_folder_name": "discard_this" or null,
   "delay": 2
 }
-````
+
 
 ### 💡 Explanation of Fields
 
@@ -43,7 +40,7 @@ The script takes a JSON input file with the following structure:
 
 ## 📂 Output Folder Structure
 
-```
+
 data/
 ├── events/
 │   ├── edge_1/
@@ -83,9 +80,9 @@ data/
 1. Create the input JSON configuration file.
 2. Run the script:
 
-   ```bash
+   bash
    python organizer.py config.json
-   ```
+   
 3. After completion, check the `data` folder for the output structure.
 
 ---
